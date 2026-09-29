@@ -28,12 +28,12 @@ jobs:
       - name: Build Docker image
         run: docker build --tag cloud-agent:${{ github.sha }} .
 
-  deploy:
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger configured deployment hook
-        env:
-          DEPLOY_WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}
-        run: curl --fail --silent --show-error --request POST "$DEPLOY_WEBHOOK_URL"
+  # deploy:
+  #   needs: build
+  #   if: github.ref == 'refs/heads/main'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Trigger configured deployment hook
+  #       env:
+  #         DEPLOY_WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}
+  #       run: curl --fail --silent --show-error --request POST "$DEPLOY_WEBHOOK_URL"
